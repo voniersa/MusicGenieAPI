@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>Lyrics Translator</title>
+    </head>
+    <body>
+        <form method="post">
+            Interpret:<br>
+            <input type="text" name="Interpret"><br>
+            Songtitel:<br>
+            <input type="text" name="Songtitel"><br>
+            Übersetze von:
+            <select name="fromLanguage">
+                {nextLanguageOption}
+            </select>
+            zu:
+            <select name="toLanguage">
+                {nextLanguageOption}
+            </select><br>
+            <button>Enter</button><br><br>
+            {lyrics}
+            <hr>
+            {translatedLyrics}
+        </form>
+    </body>
+</html>
