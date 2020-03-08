@@ -14,11 +14,16 @@
 
     if($_POST['Interpret'] != NULL && $_POST['Songtitel'] != NULL)
     {
+        //Song Information API
+        $songInformations = "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=0a26133ca26a243bb9029bfcbbf0058f&artist=".$_POST['Interpret']."&track=".$_POST['Songtitel']."&format=json";
+        $songInformationsJson = file_get_contents($songInformations);
+        $songInformationData = json_decode($songInformationsJson, true);
+        
         //Lyrics API
         $url = "https://api.lyrics.ovh/v1/" . $_POST['Interpret']. "/". $_POST['Songtitel'];
         $json = file_get_contents($url);
         $data = json_decode($json, true);
-        $lyrics = str_replace("\n", "<br>", $data['lyrics']);
+        $lyrics = str_replace("\n", "<br>", "<h1>Lyrics:</h1>".$data['lyrics']);
         
         //Translator API
         $i = 0;
@@ -85,6 +90,21 @@
 
         $html = str_replace("{lyrics}", $lyrics, $html);
         $html = str_replace("{translatedLyrics}", $response, $html);
+        $html = str_replace("{interpret}", "<strong>Interpret:</strong> <a href='{urlInterpret}'>".$songInformationData['track']['artist']['name']."</a>", $html);
+        $html = str_replace("{songTitle}", "<strong>Songtitel:</strong> <a href='{urlTrack}'>".$songInformationData['track']['name']."</a>", $html);
+        $html = str_replace("{albumTitle}", "<strong>Album:</strong> <a href='{urlAlbum}'>".$songInformationData['track']['album']['title']."</a>", $html);
+        $html = str_replace("{listeners}", "<strong>Hörer:</strong> ".$songInformationData['track']['listeners'], $html);
+        $html = str_replace("{playCount}", "<strong>Abgespielt:</strong> ".$songInformationData['track']['playcount'], $html);
+        $html = str_replace("{urlTrack}", $songInformationData['track']['url'], $html);
+        $html = str_replace("{urlInterpret}", $songInformationData['track']['artist']['url'], $html);
+        $html = str_replace("{urlAlbum}", $songInformationData['track']['album']['url'], $html);
+        $html = str_replace("{albumCover}", "<img src='".$songInformationData['track']['album']['image'][3]['#text']."' alt='Album Cover'>", $html);
+        $html = str_replace("{tags}", "<strong>Tags:</strong> {tags}", $html);
+        foreach($songInformationData['track']['toptags']['tag'] AS $tags)
+        {
+            $html = str_replace("{tags}", "<a href='".$tags['url']."'>".$tags['name']."</a>, {tags}", $html);
+        }
+        $html = str_replace(", {tags}", "", $html);
         curl_close($ch);
     } else {
         $html = str_replace("{lyrics}", "Gib bitte einen Songtitel und einen Interpreten ein!", $html);

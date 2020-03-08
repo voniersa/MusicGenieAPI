@@ -1,6 +1,9 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>Lyrics Translator</title>
+        <link rel="stylesheet" href="style.css">
+        <meta charset="UTF-8">
     </head>
     <body>
         <form method="post">
@@ -17,9 +20,15 @@
                 {nextLanguageOption}
             </select><br>
             <button>Enter</button><br><br>
-            {lyrics}
-            <hr>
-            {translatedLyrics}
         </form>
+        {interpret} {songTitle} {albumTitle}<br>
+        {listeners} {playCount} {albumCover}<br>
+        {tags}<br><br>
+        {lyrics}
+        <hr>
+        {translatedLyrics}
+        <footer class="footer">
+	       &copy; 2020 - MADE BY DON PROMILLO (7737633, 1626763, 8917780)
+        </footer>
     </body>
 </html>

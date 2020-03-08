@@ -1,0 +1,25 @@
+/*------------------ Footer----------------*/
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: gray;
+    color: white;
+    text-align: center;
+	font-family: Coves;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+button {
+	font-family: Coves;
+	font-size: 18px;
+	color: #fff;
+	background-color: darkgrey;
+	border: none;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-o-border-radius: 5px;
+}
