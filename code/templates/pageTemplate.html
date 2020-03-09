@@ -2,31 +2,39 @@
 <html>
     <head>
         <title>Lyrics Translator</title>
-        <link rel="stylesheet" type="text/css" href="stylesheet.css">
+        <link rel="stylesheet" type="text/css" href="stylesheet.css?v=96">
         <meta charset="UTF-8">
     </head>
     <body>
-        {linkToMainAPI}<br><br>
-        <form method="get">
-            Artist:<br>
-            <input type="text" name="Artist"><br>
-            Songtitle:<br>
-            <input type="text" name="SongTitle"><br>
-            Translate from:
-            <select name="fromLanguage">
-                {nextLanguageOption}
-            </select>
-            to:
-            <select name="toLanguage">
-                {nextLanguageOption}
-            </select> {linkToAPILanguages}<br>
-            <button>Enter</button>
-        </form><br><br>
-        {interpret} {songTitle} {albumTitle}<br>
-        {listeners} {playCount} {albumCover}<br>
-        {tags}<br><br>
-        <div class='box'>{lyrics}</div>
-        <div class='box'>{translatedLyrics}</div>
+        <header class="header">
+            <a href="/" class="logo"> LYRICS TRANSLATION API</a>
+        </header>
+        <main class="main">
+            <br>{linkToMainAPI}<br><br>
+            <form method="get">
+                <strong>Artist:</strong><br>
+                <input type="text" name="Artist"><br>
+                <strong>Songtitle:</strong><br>
+                <input type="text" name="SongTitle"><br><br><br>
+                {linkToAPILanguages}<br><br>
+                <strong>Translate from:</strong>
+                <select name="fromLanguage">
+                    {nextLanguageOption}
+                </select>
+                <strong>
+                to:</strong>
+                <select name="toLanguage">
+                    {nextLanguageOption}
+                </select><br>
+                <button>Enter</button>
+            </form><br><br>
+            {interpret}<br>{songTitle}<br>{albumTitle}<br><br>
+            {listeners}<br>{playCount}<br>
+            {tags}
+		    {albumCover}<br><br>
+            <div class='box'>{lyrics}</div>
+            <div class='box'>{translatedLyrics}</div>
+        </main>
         <footer class="footer">
 	       &copy; 2020 - MADE BY DON PROMILLO (7737633, 1626763, 8917780)
         </footer>

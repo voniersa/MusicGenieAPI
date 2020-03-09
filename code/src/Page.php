@@ -68,7 +68,7 @@
 
                 $response = $this->apiConnector->getTranslatedLyrics($fromLang, $toLang, $lyrics);
             }
-            return $this->projector->showMainPage($nameCodeData, $_GET['Artist'], $_GET['SongTitle'], $lyrics, $formLang, $toLang, $response, $songInformationData);
+            return $this->projector->showMainPage($nameCodeData, $_GET['Artist'], $_GET['SongTitle'], $lyrics, $fromLang, $toLang, $response, $songInformationData);
         }
         
         function showFourZeroFour()

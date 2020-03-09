@@ -3,14 +3,276 @@
 	src: url(fonts/Coves_Light.otf);/* format("truetype");*/
 }
 
-.box {
+h1 {
+	font-size: 24px;
+}
+
+span {
+    white-space: nowrap;
+}
+
+label {
+	font-size: 20px;
+}
+
+input {
+	margin-top: 5px;
+}
+
+a {
+	color: gray;
+}
+
+a:visited {
+    color: gray;
+}
+
+a:hover {
+    background-color: #fff;
+    color: gray;
+}
+
+input[type=text] {
+    width: 200px;
+    padding: 7px;
+    border: none;
+    border-radius: 4px;
+    background-color: lightgray;
+	font-family: Coves;
+	font-size: 18px;
+}
+
+button {
+	font-family: Coves;
+	font-size: 20px;
+	color: #fff;
+	background-color: darkgrey;
+	border: none;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-o-border-radius: 5px;
+    width: 200px;
+    height: 40px;
+}
+
+
+/*--------------------- Header ---------------------*/
+.header {
+    background-color: #fff;
+    box-shadow: 8px 8px 10px 0 rgba(0,0,0,.1);
+    position: fixed;
+    width: 100%;
+    z-index: 3;
+}
+.header ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    background-color: white;
+}
+.header .navBtn li {
+    display: block;
+    padding: 20px 20px;
+    border-right: 1px solid #f4f4f4;
+    text-decoration: none;
+}
+.header li .navBtn:hover,
+.header .menuBtn:hover {
+    background-color: #fff;
+}
+.header .logo {
+    display: block;
     float: left;
-    width: 48%;
-    margin-right: 2%;
-    margin-bottom: 15px;
+    font-size: 2em;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+/*Header-Menü*/
+.header .menu {
+    clear: both;
+    max-height: 0;
+    transition: max-height .2s ease-out;
+}
+.header .menuIcon {
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    padding: 28px 20px;
+    position: relative;
+    user-select: none;
+}
+.header .menuIcon .navicon {
+    background: #333;
+    display: block;
+    height: 2px;
+    position: relative;
+    transition: background .2s ease-out;
+    width: 18px;
+}
+.header .menuIcon .navicon:before,
+.header .menuIcon .navicon:after {
+    background: #333;
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all .2s ease-out;
+    width: 100%;
+}
+.header .menuIcon .navicon:before {
+    top: 5px;
+}
+.header .menuIcon .navicon:after {
+    top: -5px;
+}
+
+/*Ist die Webseitenbreite kleiner 1087px, dann ändert sich der Header*/
+@media (min-width: 1087px) {
+    .header li {
+        float: left;
+    }
+    .header li .navBtn {
+        padding: 20px 30px;
+    }
+    .header .menu {
+        clear: none;
+        float: right;
+        max-height: none;
+    }
+    .header .menuIcon {
+        display: none;
+    }
+}
+
+/*--------------------- BODY/MAIN ---------------------*/
+
+html, body {
+    height: 100%;
+    width: 100%;
+	background-color: lightgray;
+    margin:0;
+    font-family: Coves;
+}
+
+.main { /*Hauptbody jedes Templates*/
+    background-color: #ffffff;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-o-border-radius: 10px;
+    position: fixed;
+    text-align: center;
+    top: 10%;
+    left: 8%;
+    right: 8%;
+    bottom: 5%;
+    box-shadow: 7px 7px 7px, 7px 7px 7px lightgray;
+	overflow: auto;
+    font-size: 18px;
+}
+
+select {
+    width: 200px;
+    padding: 7px;
+    border: none;
+    border-radius: 4px;
+    background-color: lightgray;
+	font-family: Coves;
+	font-size: 18px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+select:hover {
+    cursor: pointer;
+}
+
+#albumCover {
+	width: 100%;
+	height: 100%;
+}
+
+#pictureBox {
+    border-top: 10px solid #777777;
+    border-right: 10px solid #999999;
+    border-bottom: 10px solid #bbbbbb;
+    border-left: 10px solid #dddddd;
+	border-radius: 20px;
+    box-sizing: border-box;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	-o-border-radius: 20px;
+    width: 200px;
+    height: 200px;
+    float: left;
+    margin-bottom: 20px;
+}
+
+#informationBox {
+    float: left;
+    width: 46%;
+    height: 200px;
+    margin-right: 1%;
+    margin-left: 20%;
+    margin-bottom: 20px;
     padding: 20px;
     background: #eee;
     box-sizing: border-box;
+    border: none;
+    border-radius: 5px;
+}
+
+.linkIcon {
+    width: 15px;
+    height: 15px;
+}
+
+.apiLink {
+    font-size: 20px;
+    color: black;
+    background-color: lightgray;
+    padding: 5px 5px 5px 5px;
+}
+
+.apiLink:visited {
+    font-size: 20px;
+    color: black;
+    background-color: lightgray;
+    padding: 5px 5px 2px 5px;
+}
+
+#serverName {
+    color: purple;   
+}
+
+.attribute {
+    color: red;   
+}
+
+.attributeName {
+    color: blue; 
+}
+
+.apiLink:hover {
+    color: lightgray;
+    background-color: #fff;
+}
+
+/*-----------------Lyrics DIV-Boxen----------------*/
+.box {
+    float: left;
+    width: 46%;
+    margin-right: 1%;
+    margin-left: 2%;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #eee;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 5px;
 }
 
 /*------------------ Footer----------------*/
