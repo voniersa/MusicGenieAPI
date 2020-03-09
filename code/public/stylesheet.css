@@ -3,6 +3,15 @@
 	src: url(fonts/Coves_Light.otf);/* format("truetype");*/
 }
 
+.box {
+ float: left;
+ width: 48%;
+ margin-right: 2%;
+ padding: 20px;
+ background: #eee;
+ box-sizing: border-box;
+}
+
 /*------------------ Footer----------------*/
 .footer {
     position: fixed;

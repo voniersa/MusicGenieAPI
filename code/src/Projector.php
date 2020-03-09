@@ -1,7 +1,7 @@
 <?php
     class Projector {
         
-        public function showMainPage($nameCodeData, $interpret, $songTitle, $lyrics, $formLang, $toLang, $response, $songInformationData)
+        public function showMainPage($nameCodeData, $interpret, $songTitle, $lyrics, $formLang, $toLang, $translatedLyrics, $songInformationData)
         {
             $html = file_get_contents("../templates/pageTemplate.html");
             
@@ -14,8 +14,10 @@
             
             if($interpret != NULL && $songTitle != NULL)
             {
-                $html = str_replace("{lyrics}", $lyrics, $html);
-                $html = str_replace("{translatedLyrics}", $response, $html);
+                $lyrics = str_replace("\n", "<br>", $lyrics);
+                $translatedLyrics = str_replace("\n", "<br>", $translatedLyrics);
+                $html = str_replace("{lyrics}", "<h1>Lyrics:</h1>".$lyrics, $html);
+                $html = str_replace("{translatedLyrics}", "<h1>Lyrics:</h1>".$translatedLyrics, $html);
                 $html = str_replace("{interpret}", "<strong>Interpret:</strong> <a href='{urlInterpret}'>".$songInformationData['track']['artist']['name']."</a>", $html);
                 $html = str_replace("{songTitle}", "<strong>Songtitel:</strong> <a href='{urlTrack}'>".$songInformationData['track']['name']."</a>", $html);
                 $html = str_replace("{albumTitle}", "<strong>Album:</strong> <a href='{urlAlbum}'>".$songInformationData['track']['album']['title']."</a>", $html);

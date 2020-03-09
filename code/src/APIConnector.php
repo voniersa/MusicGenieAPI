@@ -6,7 +6,7 @@
             $url = "https://api.lyrics.ovh/v1/".str_replace(" ", "%20", $interpret)."/".str_replace(" ", "%20", $songTitle);
             $json = file_get_contents($url);
             $data = json_decode($json, true);
-            return str_replace("\n", "<br>", "<h1>Lyrics:</h1>".$data['lyrics']);
+            return $data['lyrics'];
         }
         
         public function getSongInformation($interpret, $songTitle)
