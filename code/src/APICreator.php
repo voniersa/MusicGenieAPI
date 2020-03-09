@@ -19,9 +19,9 @@
         public function getErrorMessage()
         {
             header("Content-type:application/json");
-            if($_GET['Interpret'] == "")
+            if($_GET['Artist'] == "")
             {
-                return json_encode(array('error' => 'The API needs to recieve an interpret'));
+                return json_encode(array('error' => 'The API needs to recieve an artist'));
             }
             if($_GET['SongTitle'] == "")
             {
@@ -39,8 +39,8 @@
         
         public function getAllInformation()
         {
-            $songInformationData = $this->apiConnector->getSongInformation($_GET['Interpret'], $_GET['SongTitle']);
-            $lyrics = $this->apiConnector->getLyricsData($_GET['Interpret'], $_GET['SongTitle']);
+            $songInformationData = $this->apiConnector->getSongInformation($_GET['Artist'], $_GET['SongTitle']);
+            $lyrics = $this->apiConnector->getLyricsData($_GET['Artist'], $_GET['SongTitle']);
             $translatedLyrics = $this->apiConnector->getTranslatedLyrics($_GET['fromLanguage'], $_GET['toLanguage'], $lyrics);
             header("Content-type:application/json");
             $array = array(

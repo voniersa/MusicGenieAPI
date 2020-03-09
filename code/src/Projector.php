@@ -19,7 +19,7 @@
                 $html = str_replace("{lyrics}", "<h1>Lyrics:</h1>".$lyrics, $html);
                 $html = str_replace("{translatedLyrics}", "<h1>Lyrics:</h1>".$translatedLyrics, $html);
                 $html = str_replace("{interpret}", "<strong>Interpret:</strong> <a href='{urlInterpret}'>".$songInformationData['track']['artist']['name']."</a>", $html);
-                $html = str_replace("{songTitle}", "<strong>Songtitel:</strong> <a href='{urlTrack}'>".$songInformationData['track']['name']."</a>", $html);
+                $html = str_replace("{songTitle}", "<strong>Songtitle:</strong> <a href='{urlTrack}'>".$songInformationData['track']['name']."</a>", $html);
                 $html = str_replace("{albumTitle}", "<strong>Album:</strong> <a href='{urlAlbum}'>".$songInformationData['track']['album']['title']."</a>", $html);
                 $html = str_replace("{listeners}", "<strong>Total Listeners:</strong> ".$songInformationData['track']['listeners'], $html);
                 $html = str_replace("{playCount}", "<strong>Total Played:</strong> ".$songInformationData['track']['playcount'], $html);
@@ -34,12 +34,12 @@
                     $html = str_replace("{tags}", "<a href='".$tags['url']."'>".$tags['name']."</a>, {tags}", $html);
                 }
                 
-                $html = str_replace("{linkToMainAPI}", "<a href='/api/?Interpret=".$interpret."&SongTitle=".$songTitle."&fromLanguage=".$fromLang."&toLanguage=".$toLang."'>".$_SERVER['SERVER_NAME']."/api/?Interpret=".$interpret."&SongTitle=".$songTitle."&fromLanguage=".$fromLang."&toLanguage=".$toLang."</a>", $html);
+                $html = str_replace("{linkToMainAPI}", "<a href='/api/?Artist=".$interpret."&SongTitle=".$songTitle."&fromLanguage=".$fromLang."&toLanguage=".$toLang."'>".$_SERVER['SERVER_NAME']."/api/?Artist=".$interpret."&SongTitle=".$songTitle."&fromLanguage=".$fromLang."&toLanguage=".$toLang."</a>", $html);
                 $html = str_replace("{linkToAPILanguages}", "<a href='/api/availableLanguages'>Get all available languages</a>", $html);
                 
                 $html = str_replace(", {tags}", "", $html);
             } else {
-                $html = str_replace("<div class='box'>{lyrics}</div>", "Gib bitte einen Songtitel und einen Interpreten ein!", $html);
+                $html = str_replace("<div class='box'>{lyrics}</div>", "Type in an artist and a songtitle and select the languages!", $html);
                 $html = str_replace("<div class='box'>{translatedLyrics}</div>", "", $html);
                 $html = str_replace("{linkToMainAPI}", "", $html);
                 $html = str_replace("{linkToAPILanguages}", "", $html);

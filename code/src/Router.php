@@ -13,11 +13,11 @@
 
         public function getPageFromUrl(String $url)
         {
-            if($_GET['Interpret'] == null)
+            if($_GET['Artist'] == null)
             {
                 $interpret = "";
             } else {
-                $interpret = $_GET['Interpret'];
+                $interpret = $_GET['Artist'];
             }
             if($_GET['SongTitle'] == null)
             {
@@ -41,9 +41,9 @@
             switch ($url)
             {
                 case '/':
-                case '/?Interpret='.$interpret.'&SongTitle='.$songTitle.'&fromLanguage='.$fromLang.'&toLanguage='.$toLang:
+                case '/?Artist='.$interpret.'&SongTitle='.$songTitle.'&fromLanguage='.$fromLang.'&toLanguage='.$toLang:
                     return $this->page->run();
-                case '/api/?Interpret='.$interpret.'&SongTitle='.$songTitle.'&fromLanguage='.$fromLang.'&toLanguage='.$toLang:
+                case '/api/?Artist='.$interpret.'&SongTitle='.$songTitle.'&fromLanguage='.$fromLang.'&toLanguage='.$toLang:
                     return $this->apiCreator->getAllInformation();
                 case '/api/availableLanguages':
                     return $this->apiCreator->getAvailableLanguages();

@@ -17,13 +17,13 @@
             $nameCodeData = $this->apiConnector->getPossibleLanguages();
 
             
-            if($_GET['Interpret'] != NULL && $_GET['SongTitle'] != NULL)
+            if($_GET['Artist'] != NULL && $_GET['SongTitle'] != NULL)
             {
                 //Song Information API
-                $songInformationData = $this->apiConnector->getSongInformation($_GET['Interpret'], $_GET['SongTitle']);
+                $songInformationData = $this->apiConnector->getSongInformation($_GET['Artist'], $_GET['SongTitle']);
 
                 //Lyrics API
-                $lyrics = $this->apiConnector->getLyricsData($_GET['Interpret'], $_GET['SongTitle']);
+                $lyrics = $this->apiConnector->getLyricsData($_GET['Artist'], $_GET['SongTitle']);
 
                 //Translator API
                 $i = 0;
@@ -68,7 +68,7 @@
 
                 $response = $this->apiConnector->getTranslatedLyrics($fromLang, $toLang, $lyrics);
             }
-            return $this->projector->showMainPage($nameCodeData, $_GET['Interpret'], $_GET['SongTitle'], $lyrics, $formLang, $toLang, $response, $songInformationData);
+            return $this->projector->showMainPage($nameCodeData, $_GET['Artist'], $_GET['SongTitle'], $lyrics, $formLang, $toLang, $response, $songInformationData);
         }
         
         function showFourZeroFour()
