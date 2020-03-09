@@ -17,30 +17,44 @@
             {
                 $interpret = "";
             } else {
-                $interpret = $_GET['Artist'];
+                $interpret = urlencode($_GET['Artist']);
             }
             if($_GET['SongTitle'] == null)
             {
                 $songTitle = "";
             } else {
-                $songTitle = $_GET['SongTitle'];
+                $songTitle = urlencode($_GET['SongTitle']);
             }
             if($_GET['fromLanguage'] == null)
             {
                 $fromLang = "";
             } else {
-                $fromLang = $_GET['fromLanguage'];
+                $fromLang = urlencode($_GET['fromLanguage']);
             }
             if($_GET['toLanguage'] == null)
             {
                 $toLang = "";
             } else {
-                $toLang = $_GET['toLanguage'];
+                $toLang = urlencode($_GET['toLanguage']);
             }
             
             switch ($url)
             {
                 case '/':
+                case '/?Artist='.$interpret:
+                case '/?SongTitle='.$songTitle:
+                case '/?fromLanguage='.$fromLang:
+                case '/?toLanguage='.$toLang:
+                case '/?Artist='.$interpret.'&SongTitle='.$songTitle:
+                case '/?Artist='.$interpret.'&fromLanguage='.$fromLang:
+                case '/?Artist='.$interpret.'&toLanguage='.$toLang:
+                case '/?SongTitle='.$songTitle.'&fromLanguage='.$fromLang:
+                case '/?SongTitle='.$songTitle.'&toLanguage='.$toLang:
+                case '/?fromLanguage='.$fromLang.'&toLanguage='.$toLang:
+                case '/?SongTitle='.$songTitle.'&fromLanguage='.$fromLang.'&toLanguage='.$toLang:
+                case '/?Artist='.$interpret.'&fromLanguage='.$fromLang.'&toLanguage='.$toLang:
+                case '/?Artist='.$interpret.'&SongTitle='.$songTitle.'&toLanguage='.$toLang:
+                case '/?Artist='.$interpret.'&SongTitle='.$songTitle.'&fromLanguage='.$fromLang:
                 case '/?Artist='.$interpret.'&SongTitle='.$songTitle.'&fromLanguage='.$fromLang.'&toLanguage='.$toLang:
                     return $this->page->run();
                 case '/api/?Artist='.$interpret.'&SongTitle='.$songTitle.'&fromLanguage='.$fromLang.'&toLanguage='.$toLang:

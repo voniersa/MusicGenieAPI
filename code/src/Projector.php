@@ -12,13 +12,15 @@
             }
             $html = str_replace("{nextLanguageOption}", "", $html);
             
-            if($interpret != NULL && $songTitle != NULL)
+            if($interpret != NULL && $songTitle != NULL && $fromLang != NULL && $toLang != NULL)
             {
                 $lyrics = str_replace("\n", "<br>", $lyrics);
                 $translatedLyrics = str_replace("\n", "<br>", $translatedLyrics);
                 $html = str_replace("{lyrics}", "<h1>Lyrics:</h1>".$lyrics, $html);
                 $html = str_replace("{translatedLyrics}", "<h1>Translated Lyrics:</h1>".$translatedLyrics, $html);
                 $html = str_replace("{interpret}", "<div id='informationBox'><strong>Interpret:</strong> <a href='{urlInterpret}'>".$songInformationData['track']['artist']['name']."</a>", $html);
+                $html = str_replace("{artistValue}", $interpret, $html);
+                $html = str_replace("{songTitleValue}", $songTitle, $html);
                 $html = str_replace("{songTitle}", "<strong>Songtitle:</strong> <a href='{urlTrack}'>".$songInformationData['track']['name']."</a>", $html);
                 $html = str_replace("{albumTitle}", "<strong>Album:</strong> <a href='{urlAlbum}'>".$songInformationData['track']['album']['title']."</a>", $html);
                 $html = str_replace("{listeners}", "<strong>Total Listeners:</strong> ".$songInformationData['track']['listeners'], $html);
@@ -35,7 +37,7 @@
                 }
                 $html = str_replace(", {tags}", "</div>", $html);
                 
-                $html = str_replace("{linkToMainAPI}", "<a class='apiLink' href='/api/?Artist=".$interpret."&SongTitle=".$songTitle."&fromLanguage=".$fromLang."&toLanguage=".$toLang."'><img class='linkIcon' src='linkIcon.png' alt=''> ".$_SERVER['SERVER_NAME']."/api/?Artist=".$interpret."&SongTitle=".$songTitle."&fromLanguage=".$fromLang."&toLanguage=".$toLang."</a>", $html);
+                $html = str_replace("{linkToMainAPI}", "<a class='apiLink' href='/api/?Artist=".urlencode($interpret)."&SongTitle=".urlencode($songTitle)."&fromLanguage=".urlencode($fromLang)."&toLanguage=".urlencode($toLang)."'><img class='linkIcon' src='linkIcon.png' alt=''> ".$_SERVER['SERVER_NAME']."/api/?Artist=".urlencode($interpret)."&SongTitle=".urlencode($songTitle)."&fromLanguage=".urlencode($fromLang)."&toLanguage=".urlencode($toLang)."</a>", $html);
                 $html = str_replace("{linkToAPILanguages}", "<a class='apiLink' href='/api/availableLanguages'><img class='linkIcon' src='linkIcon.png' alt=''> Get all available languages</a>", $html);
             } else {
                 $html = str_replace("<div class='box'>{lyrics}</div>", "Type in an artist and a songtitle and select the languages!", $html);
@@ -44,6 +46,8 @@
                 $html = str_replace("{linkToAPILanguages}", "", $html);
                 $html = str_replace("{interpret}", "", $html);
                 $html = str_replace("{songTitle}", "", $html);
+                $html = str_replace("{artistValue}", "", $html);
+                $html = str_replace("{songTitleValue}", "", $html);
                 $html = str_replace("{albumTitle}", "", $html);
                 $html = str_replace("{listeners}", "", $html);
                 $html = str_replace("{playCount}", "", $html);
