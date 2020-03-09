@@ -30,7 +30,7 @@ sudo docker-compose restart
 
 ## Stop
 
-If you want to stop the docker containters you have to type the following command to your command line:
+If you want to stop the docker containers you have to type the following command to your command line:
 ```
 sudo docker-compose stop
 ```

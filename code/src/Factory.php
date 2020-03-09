@@ -9,6 +9,9 @@
                     new Page(
                         new Projector(),
                         new APIConnector()
+                    ),
+                    new APICreator(
+                        new APIConnector()
                     )
                 )
             );

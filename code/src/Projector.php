@@ -1,7 +1,7 @@
 <?php
     class Projector {
         
-        public function showMainPage($nameCodeData, $interpret, $songTitle, $lyrics, $formLang, $toLang, $translatedLyrics, $songInformationData)
+        public function showMainPage($nameCodeData, $interpret, $songTitle, $lyrics, $fromLang, $toLang, $translatedLyrics, $songInformationData)
         {
             $html = file_get_contents("../templates/pageTemplate.html");
             
@@ -21,8 +21,8 @@
                 $html = str_replace("{interpret}", "<strong>Interpret:</strong> <a href='{urlInterpret}'>".$songInformationData['track']['artist']['name']."</a>", $html);
                 $html = str_replace("{songTitle}", "<strong>Songtitel:</strong> <a href='{urlTrack}'>".$songInformationData['track']['name']."</a>", $html);
                 $html = str_replace("{albumTitle}", "<strong>Album:</strong> <a href='{urlAlbum}'>".$songInformationData['track']['album']['title']."</a>", $html);
-                $html = str_replace("{listeners}", "<strong>Hörer:</strong> ".$songInformationData['track']['listeners'], $html);
-                $html = str_replace("{playCount}", "<strong>Abgespielt:</strong> ".$songInformationData['track']['playcount'], $html);
+                $html = str_replace("{listeners}", "<strong>Total Listeners:</strong> ".$songInformationData['track']['listeners'], $html);
+                $html = str_replace("{playCount}", "<strong>Total Played:</strong> ".$songInformationData['track']['playcount'], $html);
                 $html = str_replace("{urlTrack}", $songInformationData['track']['url'], $html);
                 $html = str_replace("{urlInterpret}", $songInformationData['track']['artist']['url'], $html);
                 $html = str_replace("{urlAlbum}", $songInformationData['track']['album']['url'], $html);
@@ -34,10 +34,15 @@
                     $html = str_replace("{tags}", "<a href='".$tags['url']."'>".$tags['name']."</a>, {tags}", $html);
                 }
                 
+                $html = str_replace("{linkToMainAPI}", "<a href='/api/?Interpret=".$interpret."&SongTitle=".$songTitle."&fromLanguage=".$fromLang."&toLanguage=".$toLang."'>".$_SERVER['SERVER_NAME']."/api/?Interpret=".$interpret."&SongTitle=".$songTitle."&fromLanguage=".$fromLang."&toLanguage=".$toLang."</a>", $html);
+                $html = str_replace("{linkToAPILanguages}", "<a href='/api/availableLanguages'>Get all available languages</a>", $html);
+                
                 $html = str_replace(", {tags}", "", $html);
             } else {
-                $html = str_replace("{lyrics}", "Gib bitte einen Songtitel und einen Interpreten ein!", $html);
-                $html = str_replace("{translatedLyrics}", "", $html);
+                $html = str_replace("<div class='box'>{lyrics}</div>", "Gib bitte einen Songtitel und einen Interpreten ein!", $html);
+                $html = str_replace("<div class='box'>{translatedLyrics}</div>", "", $html);
+                $html = str_replace("{linkToMainAPI}", "", $html);
+                $html = str_replace("{linkToAPILanguages}", "", $html);
                 $html = str_replace("{interpret}", "", $html);
                 $html = str_replace("{songTitle}", "", $html);
                 $html = str_replace("{albumTitle}", "", $html);

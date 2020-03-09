@@ -2,15 +2,16 @@
 <html>
     <head>
         <title>Lyrics Translator</title>
-        <link rel="stylesheet" type="text/css" href="stylesheet.css">
+        <link rel="stylesheet" type="text/css" href="stylesheet.css?v=1.7">
         <meta charset="UTF-8">
     </head>
     <body>
-        <form method="post">
+        {linkToMainAPI}<br><br>
+        <form method="get">
             Interpret:<br>
             <input type="text" name="Interpret"><br>
             Songtitel:<br>
-            <input type="text" name="Songtitel"><br>
+            <input type="text" name="SongTitle"><br>
             Übersetze von:
             <select name="fromLanguage">
                 {nextLanguageOption}
@@ -18,14 +19,14 @@
             zu:
             <select name="toLanguage">
                 {nextLanguageOption}
-            </select><br>
-            <button>Enter</button><br><br>
-        </form>
+            </select> {linkToAPILanguages}<br>
+            <button>Enter</button>
+        </form><br><br>
         {interpret} {songTitle} {albumTitle}<br>
         {listeners} {playCount} {albumCover}<br>
         {tags}<br><br>
-        <div class="box">{lyrics}</div>
-        <div class="box">{translatedLyrics}</div>
+        <div class='box'>{lyrics}</div>
+        <div class='box'>{translatedLyrics}</div>
         <footer class="footer">
 	       &copy; 2020 - MADE BY DON PROMILLO (7737633, 1626763, 8917780)
         </footer>

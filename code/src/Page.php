@@ -17,19 +17,19 @@
             $nameCodeData = $this->apiConnector->getPossibleLanguages();
 
             
-            if($_POST['Interpret'] != NULL && $_POST['Songtitel'] != NULL)
+            if($_GET['Interpret'] != NULL && $_GET['SongTitle'] != NULL)
             {
                 //Song Information API
-                $songInformationData = $this->apiConnector->getSongInformation($_POST['Interpret'], $_POST['Songtitel']);
+                $songInformationData = $this->apiConnector->getSongInformation($_GET['Interpret'], $_GET['SongTitle']);
 
                 //Lyrics API
-                $lyrics = $this->apiConnector->getLyricsData($_POST['Interpret'], $_POST['Songtitel']);
+                $lyrics = $this->apiConnector->getLyricsData($_GET['Interpret'], $_GET['SongTitle']);
 
                 //Translator API
                 $i = 0;
                 foreach($nameCodeData AS $ncd)
                 {
-                    if($ncd == $_POST['fromLanguage'])
+                    if($ncd == $_GET['fromLanguage'])
                     {
                         $j = 0;
                         foreach(array_keys($nameCodeData) AS $key)
@@ -49,7 +49,7 @@
                 $i = 0;
                 foreach($nameCodeData AS $ncd)
                 {
-                    if($ncd == $_POST['toLanguage'])
+                    if($ncd == $_GET['toLanguage'])
                     {
                         $j = 0;
                         foreach(array_keys($nameCodeData) AS $key)
@@ -68,7 +68,7 @@
 
                 $response = $this->apiConnector->getTranslatedLyrics($fromLang, $toLang, $lyrics);
             }
-            return $this->projector->showMainPage($nameCodeData, $_POST['Interpret'], $_POST['Songtitel'], $lyrics, $formLang, $toLang, $response, $songInformationData);
+            return $this->projector->showMainPage($nameCodeData, $_GET['Interpret'], $_GET['SongTitle'], $lyrics, $formLang, $toLang, $response, $songInformationData);
         }
         
         function showFourZeroFour()
@@ -76,3 +76,5 @@
             return $this->projector->showFourZeroFour();
         }
     }
+
+?>
