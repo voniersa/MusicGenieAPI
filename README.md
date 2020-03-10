@@ -20,7 +20,15 @@ To start the containers you have to execute the docker-compose file:
 ```
 sudo docker-compose up -d
 ```
-
+### Use API
+Get all supported languages and their name codes:
+```
+http://localhost/api/availableLanguages
+```
+To get all information about a song plus the translated lyrics and all links for last.fm just open the following link and replace the placeholders:
+```
+http://localhost/api/?Artist={artist}&SongTitle={songTitle}&fromLanguage={fromLanguage}&toLanguage={toLanguage}
+```
 ## Changes
 
 You have to restart your containers if you change one of your config-files.
