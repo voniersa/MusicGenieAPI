@@ -47,7 +47,7 @@
                 "track" => array(
                     "songTitle" => $songInformationData['track']['name'],
                     "url" => $songInformationData['track']['url'],
-                    "interpret" => array(
+                    "artist" => array(
                         "name" => $songInformationData['track']['artist']['name'],
                         "url" => $songInformationData['track']['artist']['url'],
                     ),

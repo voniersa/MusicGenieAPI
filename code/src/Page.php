@@ -13,19 +13,11 @@
         
         function run()
         {
-            //Translator API
-            $nameCodeData = $this->apiConnector->getPossibleLanguages();
+            $nameCodeData = $this->apiConnector->getMySupportedLanguages();
 
             
             if($_GET['Artist'] != NULL && $_GET['SongTitle'] != NULL)
             {
-                //Song Information API
-                $songInformationData = $this->apiConnector->getSongInformation($_GET['Artist'], $_GET['SongTitle']);
-
-                //Lyrics API
-                $lyrics = $this->apiConnector->getLyricsData($_GET['Artist'], $_GET['SongTitle']);
-
-                //Translator API
                 $i = 0;
                 foreach($nameCodeData AS $ncd)
                 {
@@ -65,10 +57,11 @@
                     }
                     $i++;
                 }
-
-                $response = $this->apiConnector->getTranslatedLyrics($fromLang, $toLang, $lyrics);
             }
-            return $this->projector->showMainPage($nameCodeData, $_GET['Artist'], $_GET['SongTitle'], $lyrics, $fromLang, $toLang, $response, $songInformationData);
+            
+            $data = $this->apiConnector->getOurAPI($_GET['Artist'], $_GET['SongTitle'], $fromLang, $toLang);
+            
+            return $this->projector->showMainPage($_GET['Artist'], $_GET['SongTitle'], $data, $fromLang, $toLang, $nameCodeData);
         }
         
         function showFourZeroFour()

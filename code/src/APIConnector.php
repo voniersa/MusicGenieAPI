@@ -1,6 +1,22 @@
 <?php
     class APIConnector
     {
+        public function getOurAPI($interpret, $songTitle, $fromLang, $toLang)
+        {
+            $url = "http://100.115.92.196/api/?Artist=".urlencode($interpret)."&SongTitle=".urlencode($songTitle)."&fromLanguage=".urlencode($fromLang)."&toLanguage=".urlencode($toLang);
+            $json = file_get_contents($url);
+            $data = json_decode($json, true);
+            return $data;
+        }
+        
+        public function getMySupportedLanguages()
+        {
+            $url = "http://100.115.92.196/api/availableLanguages";
+            $json = file_get_contents($url);
+            $data = json_decode($json, true);
+            return $data['languages'];
+        }
+        
         public function getLyricsData($interpret, $songTitle)
         {
             $url = "https://api.lyrics.ovh/v1/".urlencode($interpret)."/".urlencode($songTitle);
