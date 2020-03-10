@@ -1,6 +1,6 @@
 # lyrcisTranslationAPI
 
-This API allows you to translate a song lyrcis into a specific language.
+This API allows you to translate a song lyrcis into a specific language. It also gives you some information and links about your searched track. With the implemented Web GUI you get a nice presentation of the API's output.
 
 ## Getting Started
 
