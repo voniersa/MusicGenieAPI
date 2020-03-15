@@ -1,38 +1,29 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Lyrics Translator</title>
-        <link rel="stylesheet" type="text/css" href="stylesheet.css?v=96">
+        <title>MUSIC GENIE</title>
+        <link rel="stylesheet" type="text/css" href="stylesheet.css?sd=1">
         <meta charset="UTF-8">
     </head>
     <body>
         <header class="header">
-            <a href="/" class="logo"> LYRICS TRANSLATION API</a>
+            <a href="/" class="logo"> <img src="logo.png" id="logoPNG" alt=""> MUSIC GENIE</a>
         </header>
         <main class="main">
             <br>{linkToMainAPI}<br><br>
             <form method="get">
                 <label for="tbArtist"><strong>Artist:</strong></label><br>
                 <input id="tbArtist" type="text" value="{artistValue}" name="Artist"><br>
-                <label for="tbSongTitle"><strong>SongTitle:</strong></label><br>
-                <input id="tbSongTitle" type="text" value="{songTitleValue}" name="SongTitle"><br><br><br>
-                {linkToAPILanguages}<br><br>
-                <label for="selectFrom"><strong>Translate from:</strong></label>
-                <select id="selectFrom" name="fromLanguage">
-                    <option selected disabled>Choose language</option>
-                    {nextLanguageOption}
-                </select>
-                <label for="selectTo"><strong>to:</strong></label>
-                <select id="selectTo" name="toLanguage">
-                    <option selected disabled>Choose language</option>
-                    {nextLanguageOption}
-                </select><br>
+                <label for="tbSongTitle"><strong>Songtitle:</strong></label><br>
+                <input id="tbSongTitle" type="text" value="{songTitleValue}" name="SongTitle"><br><br>
                 <button>Enter</button>
             </form><br><br>
             {interpret}<br>{songTitle}<br>{albumTitle}<br><br>
             {listeners}<br>{playCount}<br>
             {tags}
-		    {albumCover}<br><br>
+		    {albumCover}<br><br><br><br><br><br><br><br><br><br><br>
+            {linkToAPILanguages}<br><br>
+            {translateOption}
             <div class='box'>{lyrics}</div>
             <div class='box'>{translatedLyrics}</div>
         </main>

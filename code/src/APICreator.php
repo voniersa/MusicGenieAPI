@@ -37,6 +37,35 @@
             }
         }
         
+        public function getAllInformationExceptTranslation()
+        {
+            $songInformationData = $this->apiConnector->getSongInformation($_GET['Artist'], $_GET['SongTitle']);
+            $lyrics = $this->apiConnector->getLyricsData($_GET['Artist'], $_GET['SongTitle']);
+            header("Content-type:application/json");
+            $array = array(
+                "track" => array(
+                    "songTitle" => $songInformationData['track']['name'],
+                    "url" => $songInformationData['track']['url'],
+                    "artist" => array(
+                        "name" => $songInformationData['track']['artist']['name'],
+                        "url" => $songInformationData['track']['artist']['url'],
+                    ),
+                    "album" => array(
+                        "name" => $songInformationData['track']['album']['title'],
+                        "url" => $songInformationData['track']['album']['url'],
+                        "cover" => $songInformationData['track']['album']['image'][3]['#text']
+                    ),
+                    "lyrics" => array(
+                        "originalLyrics" => $lyrics
+                    ),
+                    "listeners" => $songInformationData['track']['listeners'],
+                    "playCount" => $songInformationData['track']['playcount'],
+                    "tags" => $songInformationData['track']['toptags']['tag']
+                )
+            );
+            return json_encode($array);
+        }
+        
         public function getAllInformation()
         {
             $songInformationData = $this->apiConnector->getSongInformation($_GET['Artist'], $_GET['SongTitle']);

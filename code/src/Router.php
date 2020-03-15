@@ -57,16 +57,20 @@
                 case '/?Artist='.$interpret.'&SongTitle='.$songTitle.'&fromLanguage='.$fromLang:
                 case '/?Artist='.$interpret.'&SongTitle='.$songTitle.'&fromLanguage='.$fromLang.'&toLanguage='.$toLang:
                     return $this->page->run();
+                case '/api/?Artist='.$interpret.'&SongTitle='.$songTitle:
+                    return $this->apiCreator->getAllInformationExceptTranslation();
                 case '/api/?Artist='.$interpret.'&SongTitle='.$songTitle.'&fromLanguage='.$fromLang.'&toLanguage='.$toLang:
                     return $this->apiCreator->getAllInformation();
                 case '/api/availableLanguages':
                     return $this->apiCreator->getAvailableLanguages();
             }
+            
             if(strpos($url,"/api/")!==false)
             {
                 return $this->apiCreator->getErrorMessage();
             }
             
+            http_response_code(404);
             return $this->page->showFourZeroFour();
         }
     }
