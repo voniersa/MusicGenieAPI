@@ -22,16 +22,32 @@
         public function getLyricsData($interpret, $songTitle)
         {
             $url = "https://api.lyrics.ovh/v1/".urlencode($interpret)."/".urlencode($songTitle);
-            $json = file_get_contents($url);
-            $data = json_decode($json, true);
-            return $data['lyrics'];
+            if(@file_get_contents($url))
+            {
+                $json = file_get_contents($url);
+                $data = json_decode($json, true);
+                return $data['lyrics'];
+            } else {
+                return "No lyrics available";
+            }
         }
         
         public function getSongInformation($interpret, $songTitle)
         {
-            $songInformation = "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=0a26133ca26a243bb9029bfcbbf0058f&artist=".urlencode($interpret)."&track=".urlencode( $songTitle)."&format=json";
-            $songInformationJson = file_get_contents($songInformation);
-            return json_decode($songInformationJson, true);
+            $url = "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=0a26133ca26a243bb9029bfcbbf0058f&artist=".urlencode($interpret)."&track=".urlencode( $songTitle)."&format=json";
+            if(@file_get_contents($url))
+            {
+                $json = file_get_contents($url);
+                $data = json_decode($json, true);
+                
+                if($data['track']['name'] == NULL)
+                {
+                    return "'".$songTitle."' by '".$interpret."' not found, please try anything else.";
+                }
+                return $data;
+            } else {
+                return "No lyrics available";
+            }
         }
         
         public function getPossibleLanguages()

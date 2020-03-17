@@ -5,7 +5,7 @@
         {
             $html = file_get_contents("../templates/pageTemplate.html");
             
-            if($interpret != NULL && $songTitle != NULL)
+            if($interpret != NULL && $songTitle != NULL && $data['error'] == NULL)
             {
                 $lyrics = str_replace("\n", "<br>", $data['track']['lyrics']['originalLyrics']);
                 $html = str_replace("{interpret}", "<div id='informationBox'><strong>Interpret:</strong> <a href='{urlInterpret}'>".$data['track']['artist']['name']."</a>", $html);
@@ -60,7 +60,12 @@
                 
                 $html = str_replace("{linkToAPILanguages}", "<a class='apiLink' href='/api/availableLanguages'><img class='linkIcon' src='linkIcon.png' alt=''> Get all available languages</a>", $html);
             } else {
-                $html = str_replace("{listeners}", "Type in an artist and a songtitle and select the languages!", $html);
+                if($_GET['Artist'] == NULL || $_GET['SongTitle'] == NULL)
+                {
+                    $html = str_replace("{listeners}", "Type in an artist and a songtitle!", $html);
+                } else {
+                    $html = str_replace("{listeners}", $data['error'], $html);
+                }
                 $html = str_replace("<div class='box'>{lyrics}</div>", "", $html);
                 $html = str_replace("<div class='box'>{translatedLyrics}</div>", "", $html);
                 $html = str_replace("{linkToMainAPI}", "", $html);

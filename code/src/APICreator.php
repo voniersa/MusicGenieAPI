@@ -16,9 +16,14 @@
             return json_encode(array('languages' => $languages));
         }
         
-        public function getErrorMessage()
-        {
+        public function getErrorMessage($gotSongInformation)
+        {            
             header("Content-type:application/json");
+            
+            if(!$gotSongInformation)
+            {
+                return json_encode(array('error' => 'No track found with this specification'));
+            }
             if($_GET['Artist'] == "")
             {
                 return json_encode(array('error' => 'The API needs to recieve an artist'));
@@ -40,6 +45,11 @@
         public function getAllInformationExceptTranslation()
         {
             $songInformationData = $this->apiConnector->getSongInformation($_GET['Artist'], $_GET['SongTitle']);
+            if($songInformationData == "'".$_GET['SongTitle']."' by '".$_GET['Artist']."' not found, please try anything else.")
+            {
+                return $this->getErrorMessage(false);
+            }
+            
             $lyrics = $this->apiConnector->getLyricsData($_GET['Artist'], $_GET['SongTitle']);
             header("Content-type:application/json");
             $array = array(
@@ -69,6 +79,11 @@
         public function getAllInformation()
         {
             $songInformationData = $this->apiConnector->getSongInformation($_GET['Artist'], $_GET['SongTitle']);
+            if($songInformationData == "'".$_GET['SongTitle']."' by '".$_GET['Artist']."' not found, please try anything else.")
+            {
+                return $this->getErrorMessage(false);
+            }
+            
             $lyrics = $this->apiConnector->getLyricsData($_GET['Artist'], $_GET['SongTitle']);
             $translatedLyrics = $this->apiConnector->getTranslatedLyrics($_GET['fromLanguage'], $_GET['toLanguage'], $lyrics);
             header("Content-type:application/json");
