@@ -1,9 +1,11 @@
 <?php
     class APIConnector
     {
+        private $ip = "100.115.92.196";
+        
         public function getOurAPI($interpret, $songTitle, $fromLang, $toLang)
         {
-            $url = "http://100.115.92.196/api/?Artist=".urlencode($interpret)."&SongTitle=".urlencode($songTitle)."&fromLanguage=".urlencode($fromLang)."&toLanguage=".urlencode($toLang);
+            $url = "http://".$this->ip."/api/?Artist=".urlencode($interpret)."&SongTitle=".urlencode($songTitle)."&fromLanguage=".urlencode($fromLang)."&toLanguage=".urlencode($toLang);
             $json = file_get_contents($url);
             $data = json_decode($json, true);
             return $data;
@@ -11,7 +13,7 @@
         
         public function getMySupportedLanguages()
         {
-            $url = "http://100.115.92.196/api/availableLanguages";
+            $url = "http://".$this->ip."/api/availableLanguages";
             $json = file_get_contents($url);
             $data = json_decode($json, true);
             return $data['languages'];

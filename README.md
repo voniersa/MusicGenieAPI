@@ -22,6 +22,12 @@ To start the containers you have to execute the docker-compose file:
 sudo docker-compose up -d
 ```
 ### Use API
+
+Before you could use your API, you have to change the variable $ip in your APIConnector-class to your local docker-container inet-ip.
+To get this ip type the following command to your terminal:
+```
+ip addr show
+```
 Get all supported languages and their name codes:
 ```
 http://localhost/api/availableLanguages
