@@ -1,6 +1,7 @@
-# lyrcisTranslationAPI
+# MusicGenieAPI
+![ALT TEXT](code/public/logo.png?raw=true "Music Genie Logo")
 
-This API allows you to translate a song lyrcis into a specific language. It also gives you some information and links about your searched track. With the implemented Web GUI you get a nice presentation of the API's output.
+This API allows you to translate a song lyrics into a specific language. It also gives you some information and links about your searched track. With the implemented Web GUI you get a nice presentation of the API's output.
 
 ## Getting Started
 
