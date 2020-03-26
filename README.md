@@ -19,7 +19,7 @@ docker-compose -v
 
 To start the containers you have to execute the docker-compose file:
 ```
-sudo docker-compose up -d
+docker-compose up -d
 ```
 ### Use API
 
@@ -40,12 +40,12 @@ http://localhost/api/?Artist={artist}&SongTitle={songTitle}&fromLanguage={fromLa
 
 You have to restart your containers if you change one of your config-files.
 ```
-sudo docker-compose restart
+docker-compose restart
 ```
 
 ## Stop
 
 If you want to stop the docker containers you have to type the following command to your command line:
 ```
-sudo docker-compose stop
+docker-compose stop
 ```
